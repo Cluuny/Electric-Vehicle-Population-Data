@@ -311,4 +311,6 @@ public class SimpleLinkedList<T> implements List<T> {
         head = null;
         size = 0;
     }
+
+    
 }

@@ -10,12 +10,17 @@ import co.edu.uptc.model.structure.SimpleLinkedList;
 
 public class OnInit {
     GetJson getJson = new GetJson();
+    GetJsonFromFile getJsonFromFile = new GetJsonFromFile();
     ObjectMapper objectMapper = new ObjectMapper();
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public SimpleLinkedList launch(SimpleLinkedList sample) {
         try {
-            String data = getJson.getJsonData("https://data.wa.gov/api/views/f6w7-q2d2/rows.json?accessType=DOWNLOAD");
+            //Linea para obtener los datos desde la API
+            /* String data = getJson.getJsonData("https://data.wa.gov/api/views/f6w7-q2d2/rows.json?accessType=DOWNLOAD"); */
+
+            //Linea para obtener los datos desde el json ubicado en resources/
+            String data = getJsonFromFile.getJson();
             Root root = objectMapper.readValue(data, Root.class);
             for (ArrayList dList : root.data) {
                 sample.add(dList);
