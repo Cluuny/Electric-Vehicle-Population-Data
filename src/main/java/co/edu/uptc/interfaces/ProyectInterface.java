@@ -9,7 +9,6 @@ public interface ProyectInterface {
     }
     
     public interface View{
-        public void setPresenter(Presenter presenter);
         public void begin();
     }
 
