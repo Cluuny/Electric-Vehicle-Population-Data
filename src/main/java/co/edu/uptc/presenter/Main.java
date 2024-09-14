@@ -4,19 +4,16 @@ import java.util.ArrayList;
 
 import co.edu.uptc.model.App;
 import co.edu.uptc.model.structure.SimpleLinkedList;
+import co.edu.uptc.view.View;
 
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings({"rawtypes"})
 public class Main {
     public static App app = new App();
-    
+    public static View view = new View();
     static SimpleLinkedList globaLinkedList = new SimpleLinkedList<ArrayList>();
-    public static void main(String[] args) {
-        globaLinkedList = app.init(globaLinkedList);
 
-        String[] cities = app.listCitiesWithMostVehicles(globaLinkedList);
-        for (String string : cities) {
-            System.out.println(string);
-        }
+    public static void main(String[] args) {
+        view.begin();
     }
 }
 

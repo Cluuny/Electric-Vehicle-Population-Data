@@ -94,8 +94,4 @@ public final class View implements ProyectInterface.View, ActionListener {
 
         }
     }
-
-    public static void main(String[] args) {
-        View vw = new View();
-    }
 }    
