@@ -12,5 +12,11 @@ public class Main {
     static SimpleLinkedList globaLinkedList = new SimpleLinkedList<ArrayList>();
     public static void main(String[] args) {
         globaLinkedList = app.init(globaLinkedList);
+
+        String[] cities = app.listCitiesWithMostVehicles(globaLinkedList);
+        for (String string : cities) {
+            System.out.println(string);
+        }
     }
 }
+

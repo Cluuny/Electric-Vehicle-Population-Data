@@ -24,4 +24,8 @@ public class App {
     public CountyCount[] countByCounty(SimpleLinkedList<ArrayList<String>> sample){
         return gModule.countByCounty(sample);
     }
+
+    public String[] listCitiesWithMostVehicles(SimpleLinkedList<ArrayList<String>> sample){
+        return gModule.listCitiesWithMostVehicles(sample);
+    }
 }
