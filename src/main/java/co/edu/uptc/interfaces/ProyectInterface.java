@@ -1,7 +1,5 @@
 package co.edu.uptc.interfaces;
 
-import java.awt.event.ActionListener;
-
 public interface ProyectInterface {
 
     public interface Model {
