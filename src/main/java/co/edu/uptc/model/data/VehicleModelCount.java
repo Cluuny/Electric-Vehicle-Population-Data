@@ -9,8 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @AllArgsConstructor
-public class CountyCount {
-    private String state;
-    private String county;
-    private int count;
+public class VehicleModelCount {
+    private String modelo;
+    private int conteo;
 }

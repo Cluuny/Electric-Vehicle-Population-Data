@@ -9,8 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @AllArgsConstructor
-public class CountyCount {
-    private String state;
-    private String county;
-    private int count;
+public class ElectricRangeCount {
+    private String rangoElectrico;
+    private int conteo;
 }
