@@ -13,16 +13,20 @@ public class OnInit {
     GetJsonFromFile getJsonFromFile = new GetJsonFromFile();
     ObjectMapper objectMapper = new ObjectMapper();
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    public SimpleLinkedList launch(SimpleLinkedList sample) {
+    @SuppressWarnings({ "rawtypes" })
+    public SimpleLinkedList launch(SimpleLinkedList<ArrayList> sample) {
         try {
-            //Linea para obtener los datos desde la API
-            /* String data = getJson.getJsonData("https://data.wa.gov/api/views/f6w7-q2d2/rows.json?accessType=DOWNLOAD"); */
+            // Linea para obtener los datos desde la API
+            /*
+             * String data = getJson.getJsonData(
+             * "https://data.wa.gov/api/views/f6w7-q2d2/rows.json?accessType=DOWNLOAD");
+             */
 
-            //Linea para obtener los datos desde el json ubicado en resources/
+            // Linea para obtener los datos desde el json ubicado en resources/
             String data = getJsonFromFile.getJson();
             Root root = objectMapper.readValue(data, Root.class);
-            for (ArrayList dList : root.data) {
+            for (ArrayList<Object> dList : root.data) {
+                dList.subList(0, 8).clear();
                 sample.add(dList);
             }
         } catch (IOException e) {

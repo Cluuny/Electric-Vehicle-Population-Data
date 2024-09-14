@@ -2,21 +2,13 @@ package co.edu.uptc.model.structure;
 
 import java.util.*;
 
+import lombok.Getter;
+
+@Getter
 public class SimpleLinkedList<T> implements List<T> {
 
     private Node<T> head;
     private int size = 0;
-
-    // Clase interna para definir los nodos de la lista enlazada
-    private static class Node<T> {
-        T data;
-        Node<T> next;
-
-        public Node(T data) {
-            this.data = data;
-            this.next = null;
-        }
-    }
 
     // Constructor
     public SimpleLinkedList() {
