@@ -1,0 +1,14 @@
+vehicle variables[
+ 1. name": "VIN (1-10)" "description": "The 1st 10 characters of each vehicle's Vehicle Identification Number (VIN)."
+
+2. "name": "County", "description": "This is the geographic region of a state that a vehicle's owner is listed to reside within. Vehicles registered in Washington state may be located in other states.",
+
+3."name": "City",  "description": "The city in which the registered owner resides.",
+
+4."name": "State", "description": "This is the geographic region of the country associated with the record. These addresses may be located in other states.",
+
+7."name": "Make", "description": "The manufacturer of the vehicle, determined by decoding the Vehicle Identification Number (VIN).",
+
+8."name": "Model", "description": "The model of the vehicle, determined by decoding the Vehicle Identification Number (VIN).",
+
+11."name": "Electric Range", "description": "Describes how far a vehicle can travel purely on its electric charge."
