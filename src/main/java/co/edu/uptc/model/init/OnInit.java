@@ -6,29 +6,39 @@ import java.util.ArrayList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.edu.uptc.model.data.Root;
+import co.edu.uptc.model.data.Vehicle;
 import co.edu.uptc.model.structure.SimpleLinkedList;
 
 public class OnInit {
-    GetJson getJson = new GetJson();
-    GetJsonFromFile getJsonFromFile = new GetJsonFromFile();
     ObjectMapper objectMapper = new ObjectMapper();
+    ApiConsumer apiConsumer = new ApiConsumer();
 
-    @SuppressWarnings({ "rawtypes" })
-    public SimpleLinkedList launch(SimpleLinkedList<ArrayList> sample) {
+    public SimpleLinkedList<Vehicle> launch(SimpleLinkedList<Vehicle> sample) {
         try {
-            // Linea para obtener los datos desde la API
-            String data = getJson.getJsonData("https://data.wa.gov/api/views/f6w7-q2d2/rows.json?accessType=DOWNLOAD");
-
-            // Linea para obtener los datos desde el json ubicado en resources/
-            //String data = getJsonFromFile.getJson();
+            String data = apiConsumer.getData();
             Root root = objectMapper.readValue(data, Root.class);
+            int metadata = 7;
+
             for (ArrayList<Object> dList : root.data) {
-                dList.subList(0, 8).clear();
-                sample.add(dList);
+                Vehicle vehicle = new Vehicle();
+                vehicle.setVin(getStringValue(dList, metadata + 1));
+                vehicle.setCounty(getStringValue(dList, metadata + 2));
+                vehicle.setCity(getStringValue(dList, metadata + 3));
+                vehicle.setState(getStringValue(dList, metadata + 4));
+                vehicle.setManufacturer(getStringValue(dList, metadata + 7));
+                vehicle.setModel(getStringValue(dList, metadata + 8));
+                vehicle.setElectricRange(getStringValue(dList, metadata + 11));
+
+                sample.add(vehicle);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
         return sample;
+    }
+
+    private String getStringValue(ArrayList<Object> dList, int index) {
+        Object value = dList.get(index);
+        return value != null ? value.toString() : ""; // Devuelve un valor por defecto si es null
     }
 }

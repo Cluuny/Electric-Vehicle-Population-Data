@@ -1,9 +1,8 @@
 package co.edu.uptc.model.modules;
 
-import java.util.ArrayList;
-
 import co.edu.uptc.model.data.CountyCount;
 import co.edu.uptc.model.data.StateCount;
+import co.edu.uptc.model.data.Vehicle;
 import co.edu.uptc.model.structure.Node;
 import co.edu.uptc.model.structure.SimpleLinkedList;
 import lombok.Getter;
@@ -15,15 +14,15 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GeographicalModule {
 
-    public StateCount[] listByState(SimpleLinkedList<ArrayList<String>> sample) {
+    public StateCount[] listByState(SimpleLinkedList<Vehicle> sample) {
         String[] states = new String[50];
         int[] counts = new int[200048];
         int numStates = 0;
 
-        Node<ArrayList<String>> actual = sample.getHead();
+        Node<Vehicle> actual = sample.getHead();
 
         while (actual != null) {
-            String state = actual.getData().get(3);
+            String state = actual.getData().getState();
 
             boolean found = false;
             for (int i = 0; i < numStates; i++) {
@@ -69,16 +68,16 @@ public class GeographicalModule {
     }
 
     // Método para contar registros por condado y state
-    public CountyCount[] countByCounty(SimpleLinkedList<ArrayList<String>> sample) {
+    public CountyCount[] countByCounty(SimpleLinkedList<Vehicle> sample) {
         String[] states = new String[200048];
         String[] counties = new String[200048];
         int[] counts = new int[200048];
         int totalOcurrences = 0;
 
-        Node<ArrayList<String>> actual = sample.getHead();
+        Node<Vehicle> actual = sample.getHead();
         while (actual != null) {
-            String actualState = actual.getData().get(3); // Posición 3 tiene el state
-            String actualCounty = actual.getData().get(1); // Posición 1 tiene el condado
+            String actualState = actual.getData().getState();
+            String actualCounty = actual.getData().getCounty();
 
             // Buscar si el state y condado ya están en la lista
             boolean found = false;
@@ -135,15 +134,15 @@ public class GeographicalModule {
     }
 
     // Método para listar la ciudad con mayor cantidad de vehículos
-    public String[] listCitiesWithMostVehicles(SimpleLinkedList<ArrayList<String>> sample) {
+    public String[] listCitiesWithMostVehicles(SimpleLinkedList<Vehicle> sample) {
         // Suponiendo un máximo de 200,000 cities (ajustable)
         String[] cities = new String[200048];
         int[] counts = new int[200048];
         int totalCities = 0;
 
-        Node<ArrayList<String>> actual = sample.getHead();
+        Node<Vehicle> actual = sample.getHead();
         while (actual != null) {
-            String actualCity = actual.getData().get(2); // Posición 2 tiene la ciudad
+            String actualCity = actual.getData().getCity(); // Posición 2 tiene la ciudad
 
             // Buscar si la ciudad ya está en la lista
             boolean found = false;

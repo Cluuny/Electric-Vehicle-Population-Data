@@ -122,13 +122,41 @@ class Parameters{
 class Query{
 }
 
+
 public class Root{
     public Meta meta;
     public ArrayList<ArrayList<Object>> data;
+
+    
+    
+
+    public Root(Meta meta, ArrayList<ArrayList<Object>> data) {
+        this.meta = meta;
+        this.data = data;
+    }
+
+    public Root() {
+        this.meta = new Meta();
+        this.data = new ArrayList<>();
+    }
+
+    public Meta getMeta() {
+        return meta;
+    }
+
+    public ArrayList<ArrayList<Object>> getData() {
+        return data;
+    }
+
+
+
+    
 }
 
 class SubmissionDetails{
     public String permissionType;
+
+    
 }
 
 class SubmissionOutcomeApplication{
