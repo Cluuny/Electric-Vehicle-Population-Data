@@ -12,35 +12,35 @@ import co.edu.uptc.model.modules.VehicleModule;
 import co.edu.uptc.model.structure.SimpleLinkedList;
 
 public class App {
-    private OnInit onInit = new  OnInit();
+    private OnInit onInit = new OnInit();
     private GeographicalModule gModule = new GeographicalModule();
     private VehicleModule vModule = new VehicleModule();
-    
-    public SimpleLinkedList<Vehicle> init(SimpleLinkedList<Vehicle> sample){
+
+    public SimpleLinkedList<Vehicle> init(SimpleLinkedList<Vehicle> sample) {
         return onInit.launch(sample);
     }
 
-    public StateCount[] listByState(SimpleLinkedList<Vehicle> sample){
+    public StateCount[] listByState(SimpleLinkedList<Vehicle> sample) {
         return gModule.listByState(sample);
     }
-    
-    public CountyCount[] countByCounty(SimpleLinkedList<Vehicle> sample){
+
+    public CountyCount[] countByCounty(SimpleLinkedList<Vehicle> sample) {
         return gModule.countByCounty(sample);
     }
 
-    public String[] listCitiesWithMostVehicles(SimpleLinkedList<Vehicle> sample){
+    public String[] listCitiesWithMostVehicles(SimpleLinkedList<Vehicle> sample) {
         return gModule.listCitiesWithMostVehicles(sample);
     }
 
-    public VehicleModelCount[] countCarsByModel(SimpleLinkedList<Vehicle> sample){
+    public VehicleModelCount[] countCarsByModel(SimpleLinkedList<Vehicle> sample) {
         return vModule.countCarsByModel(sample);
     }
 
-    public VehicleMakerCount[] countCarsByMaker(SimpleLinkedList<Vehicle> sample){
+    public VehicleMakerCount[] countCarsByMaker(SimpleLinkedList<Vehicle> sample) {
         return vModule.countCarsByMaker(sample);
     }
 
-    public ElectricRangeCount[] countCarsByElectricRange(SimpleLinkedList<Vehicle> sample){
+    public ElectricRangeCount[] countCarsByElectricRange(SimpleLinkedList<Vehicle> sample) {
         return vModule.countCarsByElectricRange(sample);
     }
 }

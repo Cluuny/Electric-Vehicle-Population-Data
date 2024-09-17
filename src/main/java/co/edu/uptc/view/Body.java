@@ -12,21 +12,19 @@ import javax.swing.JPanel;
 import lombok.Getter;
 
 @Getter
-public class Body extends JPanel{
+public class Body extends JPanel {
     private ButtonsPanel buttonsPanel;
     private ContainerPanel containerPanel;
 
     public Body(ButtonsPanel buttonsPanel) {
-        
+
         super(new FlowLayout());
         this.buttonsPanel = buttonsPanel;
         containerPanel = new ContainerPanel();
 
-
         add(buttonsPanel);
         add(containerPanel);
-    
+
     }
 
-}    
-
+}

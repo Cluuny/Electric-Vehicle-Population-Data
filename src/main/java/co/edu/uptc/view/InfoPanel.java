@@ -4,16 +4,17 @@
  */
 
 package co.edu.uptc.view;
+
 import java.awt.Color;
 
 import javax.swing.JPanel;
 
-public class InfoPanel extends JPanel{
-    public InfoPanel(){
+public class InfoPanel extends JPanel {
+    public InfoPanel() {
 
         super();
         setBackground(new Color(0xFFFFFF));
-        
+
     }
-    
+
 }

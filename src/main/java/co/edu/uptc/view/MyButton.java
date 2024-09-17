@@ -12,7 +12,6 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
-
 public class MyButton extends JButton {
 
     public MyButton(String text, String actionComand) {
@@ -26,4 +25,4 @@ public class MyButton extends JButton {
         this.setFont(new Font("Inria Sans", Font.BOLD, 25));
 
     }
-}    
+}

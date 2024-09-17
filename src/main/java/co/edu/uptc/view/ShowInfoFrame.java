@@ -12,11 +12,11 @@ import javax.swing.JFrame;
 import lombok.Getter;
 
 @Getter
-public class ShowInfoFrame extends JFrame{
+public class ShowInfoFrame extends JFrame {
     private Header headerPanel;
     private Body bodyPanel;
 
-    public ShowInfoFrame(Header header, Body body){
+    public ShowInfoFrame(Header header, Body body) {
         super("Informe");
         this.setSize(960, 600);
         this.setResizable(false);
@@ -27,17 +27,17 @@ public class ShowInfoFrame extends JFrame{
         headerPanel = header;
         headerPanel.setVisible(true);
         headerPanel.setOpaque(true);
-        
+
         bodyPanel = body;
         bodyPanel.setVisible(true);
         bodyPanel.setOpaque(true);
-        
+
         add(bodyPanel, BorderLayout.CENTER);
         add(headerPanel, BorderLayout.NORTH);
 
     }
 
-    public OptionButton[] getOptionButtons(){
+    public OptionButton[] getOptionButtons() {
         OptionButton[] buttons = new OptionButton[3];
 
         buttons[0] = bodyPanel.getButtonsPanel().getFirstButton();

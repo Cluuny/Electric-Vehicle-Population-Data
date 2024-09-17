@@ -20,7 +20,7 @@ public class StartFrame extends JFrame {
     private MyButton analisisGeoJbutton;
     private MyButton analisisVehicleJbutton;
 
-    public StartFrame(String name){
+    public StartFrame(String name) {
         super(name);
         this.setSize(669, 466);
         this.setResizable(false);
@@ -37,7 +37,7 @@ public class StartFrame extends JFrame {
 
     }
 
-    private void setUpTitlePanel(){
+    private void setUpTitlePanel() {
         titleJpanel = new JPanel();
         titleJpanel.setBounds(new Rectangle(0, 0, 669, 106));
         titleJpanel.setBackground(new Color(0x53788c));
@@ -51,23 +51,12 @@ public class StartFrame extends JFrame {
         titleJpanel.add(titleLabel);
     }
 
-    private void setUpButtons(){
+    private void setUpButtons() {
         analisisGeoJbutton = new MyButton("Analisis geográfico", "analisisGeo");
         analisisGeoJbutton.setBounds(new Rectangle(223, 206, 235, 54));
-        
-        
 
         analisisVehicleJbutton = new MyButton("Analisis Vehicular", "analisisVehicle");
         analisisVehicleJbutton.setBounds(new Rectangle(223, 309, 235, 54));
     }
 
 }
-
-
-
-
-    
-
-
-
-

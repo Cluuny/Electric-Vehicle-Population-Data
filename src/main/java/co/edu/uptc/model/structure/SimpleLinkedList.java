@@ -304,5 +304,4 @@ public class SimpleLinkedList<T> implements List<T> {
         size = 0;
     }
 
-    
 }

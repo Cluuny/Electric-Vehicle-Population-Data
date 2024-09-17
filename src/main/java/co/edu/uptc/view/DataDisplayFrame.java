@@ -7,7 +7,7 @@ public class DataDisplayFrame extends JFrame {
     public DataDisplayFrame(String title, Object[] data) {
         super(title);
         setLayout(new BorderLayout());
-        setSize(300, 200);
+        setSize(400, 300);
         setLocationRelativeTo(null);
 
         JTextArea textArea = new JTextArea();

@@ -1,14 +1,12 @@
 package co.edu.uptc.view;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
 
-
-public class OptionButton extends JButton{
+public class OptionButton extends JButton {
 
     public OptionButton(String text, String actionCommand) {
         super(text);
@@ -18,6 +16,4 @@ public class OptionButton extends JButton{
         setPreferredSize(new Dimension(200, 34));
     }
 
-    
-    
 }
