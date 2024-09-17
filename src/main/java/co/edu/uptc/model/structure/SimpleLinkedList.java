@@ -5,7 +5,7 @@ import java.util.*;
 import lombok.Getter;
 
 @Getter
-public class SimpleLinkedList<T> implements List<T> {
+public class SimpleLinkedList<T> implements List<T>, Cloneable {
 
     private Node<T> head;
     private int size = 0;
@@ -14,6 +14,20 @@ public class SimpleLinkedList<T> implements List<T> {
     public SimpleLinkedList() {
         head = null;
         size = 0;
+    }
+
+    @Override
+    public SimpleLinkedList<T> clone() {
+        try {
+            @SuppressWarnings("unchecked")
+            SimpleLinkedList<T> clonedList = (SimpleLinkedList<T>) super.clone();
+            if (this.head != null) {
+                clonedList.head = this.head.clone(); // Clonación profunda del nodo head
+            }
+            return clonedList;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Error al clonar la lista", e);
+        }
     }
 
     @Override
@@ -303,5 +317,4 @@ public class SimpleLinkedList<T> implements List<T> {
         head = null;
         size = 0;
     }
-
 }

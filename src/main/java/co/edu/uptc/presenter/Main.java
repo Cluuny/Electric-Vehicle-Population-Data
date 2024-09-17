@@ -1,7 +1,12 @@
 package co.edu.uptc.presenter;
 
 import co.edu.uptc.model.App;
+import co.edu.uptc.model.data.CountyCount;
+import co.edu.uptc.model.data.ElectricRangeCount;
+import co.edu.uptc.model.data.StateCount;
 import co.edu.uptc.model.data.Vehicle;
+import co.edu.uptc.model.data.VehicleMakerCount;
+import co.edu.uptc.model.data.VehicleModelCount;
 import co.edu.uptc.model.structure.SimpleLinkedList;
 import co.edu.uptc.view.View;
 
@@ -28,7 +33,6 @@ public class Main implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Object[] data;
         switch (e.getActionCommand()) {
             case "analisisGeo":
                 view.showGeoFrame();
@@ -43,33 +47,34 @@ public class Main implements ActionListener {
                 break;
 
             case "state":
-                data = app.listByState(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Estados", data);
+                SimpleLinkedList<StateCount> stateCounts = app.listByState(globaLinkedList);
+                view.showStringDisplayFrame("Listado por Estados", stateCounts.clone());
                 break;
 
             case "county":
-                data = app.countByCounty(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Condado", data);
+                SimpleLinkedList<CountyCount> countyCounts = app.countByCounty(globaLinkedList);
+                view.showStringDisplayFrame("Listado por Condado", countyCounts.clone());
                 break;
 
             case "city":
-                data = app.listCitiesWithMostVehicles(globaLinkedList);
-                view.showStringDisplayFrame("Cuidad con mas registros", data);
+                SimpleLinkedList<String> citiesWithMostVechicles = app.listCitiesWithMostVehicles(globaLinkedList);
+                view.showStringDisplayFrame("Cuidad con mas registros", citiesWithMostVechicles.clone());
                 break;
 
             case "model":
-                data = app.countCarsByModel(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Modelo", data);
+                SimpleLinkedList<VehicleModelCount> vehicleModelCounts = app.countCarsByModel(globaLinkedList);
+                view.showStringDisplayFrame("Listado por Modelo", vehicleModelCounts.clone());
                 break;
 
             case "amount":
-                data = app.countCarsByMaker(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Fabricante", data);
+                SimpleLinkedList<VehicleMakerCount> vehicleMakerCounts = app.countCarsByMaker(globaLinkedList);
+                view.showStringDisplayFrame("Listado por Fabricante", vehicleMakerCounts.clone());
                 break;
 
             case "range":
-                data = app.countCarsByElectricRange(globaLinkedList);
-                view.showStringDisplayFrame("Listado por ER", data);
+                SimpleLinkedList<ElectricRangeCount> electricRangeCounts = app
+                        .countCarsByElectricRange(globaLinkedList);
+                view.showStringDisplayFrame("Listado por ER", electricRangeCounts.clone());
                 break;
         }
     }

@@ -11,6 +11,10 @@ public class StateCount {
     String state;
     int count;
 
+    public void incrementCount() {
+        this.count++;
+    }
+
     @Override
     public String toString() {
         return this.state + ": " + this.count;
