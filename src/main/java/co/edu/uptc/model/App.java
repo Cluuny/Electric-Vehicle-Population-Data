@@ -11,13 +11,12 @@ import co.edu.uptc.model.modules.GeographicalModule;
 import co.edu.uptc.model.modules.VehicleModule;
 import co.edu.uptc.model.structure.SimpleLinkedList;
 
-@SuppressWarnings("rawtypes") 
 public class App {
     private OnInit onInit = new  OnInit();
     private GeographicalModule gModule = new GeographicalModule();
     private VehicleModule vModule = new VehicleModule();
     
-    public SimpleLinkedList init(SimpleLinkedList<Vehicle> sample){
+    public SimpleLinkedList<Vehicle> init(SimpleLinkedList<Vehicle> sample){
         return onInit.launch(sample);
     }
 
