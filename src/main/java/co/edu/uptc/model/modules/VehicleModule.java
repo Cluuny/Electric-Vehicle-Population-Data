@@ -1,8 +1,7 @@
 package co.edu.uptc.model.modules;
 
-import java.util.ArrayList;
-
 import co.edu.uptc.model.data.ElectricRangeCount;
+import co.edu.uptc.model.data.Vehicle;
 import co.edu.uptc.model.data.VehicleMakerCount;
 import co.edu.uptc.model.data.VehicleModelCount;
 import co.edu.uptc.model.structure.Node;
@@ -10,14 +9,14 @@ import co.edu.uptc.model.structure.SimpleLinkedList;
 
 public class VehicleModule {
     // Método para contar la cantidad de vehículos por modelo
-    public VehicleModelCount[] countCarsByModel(SimpleLinkedList<ArrayList<String>> sample) {
+    public VehicleModelCount[] countCarsByModel(SimpleLinkedList<Vehicle> sample) {
         String[] models = new String[200050];
         int[] counts = new int[200050];
         int totalModels = 0;
 
-        Node<ArrayList<String>> actual = sample.getHead();
+        Node<Vehicle> actual = sample.getHead();
         while (actual != null) {
-            String actualModel = actual.getData().get(7);
+            String actualModel = actual.getData().getModel();
 
             // Buscar si el modelo ya está en la lista
             boolean found = false;
@@ -61,14 +60,14 @@ public class VehicleModule {
     }
 
     // Método para contar la cantidad de vehículos por fabricante
-    public VehicleMakerCount[] countCarsByMaker(SimpleLinkedList<ArrayList<String>> sample) {
+    public VehicleMakerCount[] countCarsByMaker(SimpleLinkedList<Vehicle> sample) {
         String[] makers = new String[200050];
         int[] counts = new int[200050];
         int totalMakers = 0;
 
-        Node<ArrayList<String>> actual = sample.getHead();
+        Node<Vehicle> actual = sample.getHead();
         while (actual != null) {
-            String actualMaker = actual.getData().get(6);
+            String actualMaker = actual.getData().getManufacturer();
 
             // Buscar si el fabricante ya está en la lista
             boolean found = false;
@@ -112,14 +111,14 @@ public class VehicleModule {
     }
 
     // Método para contar la cantidad de vehículos por rango eléctrico
-    public ElectricRangeCount[] countCarsByElectricRange(SimpleLinkedList<ArrayList<String>> sample) {
+    public ElectricRangeCount[] countCarsByElectricRange(SimpleLinkedList<Vehicle> sample) {
         String[] ranges = new String[200050];
         int[] counts = new int[200050];
         int totalRanges = 0;
 
-        Node<ArrayList<String>> actual = sample.getHead();
+        Node<Vehicle> actual = sample.getHead();
         while (actual != null) {
-            String actualElectricRange = actual.getData().get(10);
+            String actualElectricRange = actual.getData().getElectricRange();
 
             // Buscar si el rango eléctrico ya está en la lista
             boolean found = false;

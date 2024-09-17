@@ -17,9 +17,9 @@ public class JsonConvertorService {
     public JsonConvertorService() {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-       SimpleModule module = new SimpleModule();
+        SimpleModule module = new SimpleModule();
         this.objectMapper.registerModule(module);
-        this.objectMapper.registerModule(new JavaTimeModule());        
+        this.objectMapper.registerModule(new JavaTimeModule());
     }
 
     public <T> void objectToJson(ArrayList<T> objects, String outputFile) throws IOException {
@@ -28,9 +28,9 @@ public class JsonConvertorService {
         }
     }
 
-    public <T> ArrayList<T> jsonToObject(String inputFile, TypeReference<ArrayList<T>> typeReference) throws IOException {
+    public <T> ArrayList<T> jsonToObject(String inputFile, TypeReference<ArrayList<T>> typeReference)
+            throws IOException {
         File file = new File(inputFile);
         return objectMapper.readValue(file, typeReference);
     }
 }
-
