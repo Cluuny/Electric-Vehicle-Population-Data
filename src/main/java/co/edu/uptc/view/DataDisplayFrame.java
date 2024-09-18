@@ -1,10 +1,13 @@
 package co.edu.uptc.view;
 
 import javax.swing.*;
+
+import co.edu.uptc.model.structure.SimpleLinkedList;
+
 import java.awt.*;
 
 public class DataDisplayFrame extends JFrame {
-    public DataDisplayFrame(String title, Object[] data) {
+    public DataDisplayFrame(String title, SimpleLinkedList<Object> data) {
         super(title);
         setLayout(new BorderLayout());
         setSize(400, 300);

@@ -20,27 +20,27 @@ public class App {
         return onInit.launch(sample);
     }
 
-    public StateCount[] listByState(SimpleLinkedList<Vehicle> sample) {
+    public SimpleLinkedList<StateCount> listByState(SimpleLinkedList<Vehicle> sample) {
         return gModule.listByState(sample);
     }
 
-    public CountyCount[] countByCounty(SimpleLinkedList<Vehicle> sample) {
+    public SimpleLinkedList<CountyCount> countByCounty(SimpleLinkedList<Vehicle> sample) {
         return gModule.countByCounty(sample);
     }
 
-    public String[] listCitiesWithMostVehicles(SimpleLinkedList<Vehicle> sample) {
+    public SimpleLinkedList<String> listCitiesWithMostVehicles(SimpleLinkedList<Vehicle> sample) {
         return gModule.listCitiesWithMostVehicles(sample);
     }
 
-    public VehicleModelCount[] countCarsByModel(SimpleLinkedList<Vehicle> sample) {
+    public SimpleLinkedList<VehicleModelCount> countCarsByModel(SimpleLinkedList<Vehicle> sample) {
         return vModule.countCarsByModel(sample);
     }
 
-    public VehicleMakerCount[] countCarsByMaker(SimpleLinkedList<Vehicle> sample) {
+    public SimpleLinkedList<VehicleMakerCount> countCarsByMaker(SimpleLinkedList<Vehicle> sample) {
         return vModule.countCarsByMaker(sample);
     }
 
-    public ElectricRangeCount[] countCarsByElectricRange(SimpleLinkedList<Vehicle> sample) {
+    public SimpleLinkedList<ElectricRangeCount> countCarsByElectricRange(SimpleLinkedList<Vehicle> sample) {
         return vModule.countCarsByElectricRange(sample);
     }
 }

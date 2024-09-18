@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Node<T> {
+public class Node<T> implements Cloneable {
     T data;
     Node<T> next;
 
@@ -13,4 +13,19 @@ public class Node<T> {
         this.data = data;
         this.next = null;
     }
+
+    @Override
+    public Node<T> clone() {
+        try {
+            @SuppressWarnings("unchecked")
+            Node<T> clonedNode = (Node<T>) super.clone();
+            if (this.next != null) {
+                clonedNode.next = this.next.clone();  // Clonación profunda del siguiente nodo
+            }
+            return clonedNode;
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Error al clonar el nodo", e);
+        }
+    }
 }
+

@@ -1,6 +1,7 @@
 package co.edu.uptc.view;
 
 import co.edu.uptc.interfaces.ProyectInterface;
+import co.edu.uptc.model.structure.SimpleLinkedList;
 import co.edu.uptc.presenter.Main;
 
 public final class View implements ProyectInterface.View {
@@ -87,7 +88,7 @@ public final class View implements ProyectInterface.View {
         startPageFrame.setVisible(true);
     }
 
-    public void showStringDisplayFrame(String title, Object[] data) {
+    public void showStringDisplayFrame(String title, SimpleLinkedList data) {
         DataDisplayFrame frame = new DataDisplayFrame(title, data);
         frame.setVisible(true); // Mostrar la nueva ventana
     }

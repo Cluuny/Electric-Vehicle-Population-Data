@@ -14,64 +14,58 @@ import lombok.Setter;
 @NoArgsConstructor
 public class GeographicalModule {
 
-    public StateCount[] listByState(SimpleLinkedList<Vehicle> sample) {
-        String[] states = new String[50];
-        int[] counts = new int[200048];
-        int numStates = 0;
+    public SimpleLinkedList<StateCount> listByState(SimpleLinkedList<Vehicle> sample) {
+        SimpleLinkedList<StateCount> stateCounts = new SimpleLinkedList<>();
+        Node<Vehicle> current = sample.getHead();
 
-        Node<Vehicle> actual = sample.getHead();
-
-        while (actual != null) {
-            String state = actual.getData().getState();
-
+        // Recorrer la lista de vehículos
+        while (current != null) {
+            String state = current.getData().getState();
+            Node<StateCount> scNode = stateCounts.getHead();
             boolean found = false;
-            for (int i = 0; i < numStates; i++) {
-                if (states[i].equals(state)) {
-                    counts[i]++;
+
+            // Buscar el estado en la lista stateCounts
+            while (scNode != null) {
+                if (scNode.getData().getState().equals(state)) {
+                    // Si se encuentra, incrementar el conteo
+                    scNode.getData().incrementCount();
                     found = true;
                     break;
                 }
+                scNode = scNode.getNext();
             }
 
+            // Si no se encuentra, agregar un nuevo estado a la lista
             if (!found) {
-                states[numStates] = state;
-                counts[numStates] = 1;
-                numStates++;
+                stateCounts.add(new StateCount(state, 1));
             }
 
-            actual = actual.getNext();
+            current = current.getNext();
         }
 
-        // Ordenar los states por el número de vehículos de mayor a menor (burbuja)
-        for (int i = 0; i < numStates - 1; i++) {
-            for (int j = 0; j < numStates - i - 1; j++) {
-                if (counts[j] < counts[j + 1]) {
-                    // Intercambiar counts
-                    int tempConteo = counts[j];
-                    counts[j] = counts[j + 1];
-                    counts[j + 1] = tempConteo;
-
-                    // Intercambiar states
-                    String tempState = states[j];
-                    states[j] = states[j + 1];
-                    states[j + 1] = tempState;
+        // Ordenar la lista stateCounts usando el algoritmo burbuja
+        for (int i = 0; i < stateCounts.size() - 1; i++) {
+            Node<StateCount> currentNode = stateCounts.getHead();
+            for (int j = 0; j < stateCounts.size() - i - 1; j++) {
+                Node<StateCount> nextNode = currentNode.getNext();
+                if (currentNode.getData().getCount() < nextNode.getData().getCount()) {
+                    // Intercambiar los datos de los nodos
+                    StateCount temp = currentNode.getData();
+                    currentNode.setData(nextNode.getData());
+                    nextNode.setData(temp);
                 }
+                currentNode = nextNode;
             }
         }
 
-        StateCount[] stateCount = new StateCount[numStates];
-        for (int i = 0; i < numStates; i++) {
-            stateCount[i] = new StateCount(states[i], counts[i]);
-        }
-
-        return stateCount;
+        return stateCounts;
     }
 
     // Método para contar registros por condado y state
-    public CountyCount[] countByCounty(SimpleLinkedList<Vehicle> sample) {
-        String[] states = new String[200048];
-        String[] counties = new String[200048];
-        int[] counts = new int[200048];
+    public SimpleLinkedList<CountyCount> countByCounty(SimpleLinkedList<Vehicle> sample) {
+        SimpleLinkedList<String> states = new SimpleLinkedList<>();
+        SimpleLinkedList<String> counties = new SimpleLinkedList<>();
+        SimpleLinkedList<Integer> counts = new SimpleLinkedList<>();
         int totalOcurrences = 0;
 
         Node<Vehicle> actual = sample.getHead();
@@ -79,52 +73,48 @@ public class GeographicalModule {
             String actualState = actual.getData().getState();
             String actualCounty = actual.getData().getCounty();
 
-            // Buscar si el state y condado ya están en la lista
+            // Buscar si el estado y condado ya están en la lista
             boolean found = false;
             for (int i = 0; i < totalOcurrences; i++) {
-                // Verificar que los elementos no sean nulos antes de comparar
-                if (states[i] != null && counties[i] != null &&
-                        states[i].equals(actualState) && counties[i].equals(actualCounty)) {
-                    counts[i]++;
+                if (states.get(i).equals(actualState) && counties.get(i).equals(actualCounty)) {
+                    counts.set(i, counts.get(i) + 1);
                     found = true;
                     break;
                 }
             }
 
-            // Si no se encuentra el state y condado, los agregamos a la lista
+            // Si no se encuentra el estado y condado, agregarlos a las listas
             if (!found) {
-                states[totalOcurrences] = actualState;
-                counties[totalOcurrences] = actualCounty;
-                counts[totalOcurrences] = 1;
+                states.add(actualState);
+                counties.add(actualCounty);
+                counts.add(1);
                 totalOcurrences++;
             }
 
             actual = actual.getNext();
         }
 
-        // Crear un arreglo de CountyCount
-        CountyCount[] result = new CountyCount[totalOcurrences];
+        // Crear una lista enlazada de CountyCount
+        SimpleLinkedList<CountyCount> result = new SimpleLinkedList<>();
         for (int i = 0; i < totalOcurrences; i++) {
-            result[i] = new CountyCount(states[i], counties[i], counts[i]);
+            result.add(new CountyCount(states.get(i), counties.get(i), counts.get(i)));
         }
 
-        // Ordenar primero por state alfabéticamente y luego por conteo de menor a
+        // Ordenar primero por estado alfabéticamente y luego por conteo de menor a
         // mayor
         for (int i = 0; i < totalOcurrences - 1; i++) {
             for (int j = 0; j < totalOcurrences - i - 1; j++) {
-                // Comparar por state alfabéticamente
-                if (result[j].getState().compareTo(result[j + 1].getState()) > 0) {
-                    // Intercambiar
-                    CountyCount temp = result[j];
-                    result[j] = result[j + 1];
-                    result[j + 1] = temp;
-                } else if (result[j].getState().compareTo(result[j + 1].getState()) == 0) {
-                    // Si el state es igual, comparar por conteo de menor a mayor
-                    if (result[j].getCount() > result[j + 1].getCount()) {
-                        // Intercambiar
-                        CountyCount temp = result[j];
-                        result[j] = result[j + 1];
-                        result[j + 1] = temp;
+                CountyCount current = result.get(j);
+                CountyCount next = result.get(j + 1);
+                // Comparar por estado alfabéticamente
+                if (current.getState().compareTo(next.getState()) > 0) {
+                    result.set(j, next);
+                    result.set(j + 1, current);
+                } else if (current.getState().compareTo(next.getState()) == 0) {
+                    // Si el estado es igual, comparar por conteo de menor a mayor
+                    if (current.getCount() > next.getCount()) {
+                        result.set(j, next);
+                        result.set(j + 1, current);
                     }
                 }
             }
@@ -134,21 +124,20 @@ public class GeographicalModule {
     }
 
     // Método para listar la ciudad con mayor cantidad de vehículos
-    public String[] listCitiesWithMostVehicles(SimpleLinkedList<Vehicle> sample) {
-        // Suponiendo un máximo de 200,000 cities (ajustable)
-        String[] cities = new String[200048];
-        int[] counts = new int[200048];
+    public SimpleLinkedList<String> listCitiesWithMostVehicles(SimpleLinkedList<Vehicle> sample) {
+        SimpleLinkedList<String> cities = new SimpleLinkedList<>();
+        SimpleLinkedList<Integer> counts = new SimpleLinkedList<>();
         int totalCities = 0;
 
         Node<Vehicle> actual = sample.getHead();
         while (actual != null) {
-            String actualCity = actual.getData().getCity(); // Posición 2 tiene la ciudad
+            String actualCity = actual.getData().getCity();
 
             // Buscar si la ciudad ya está en la lista
             boolean found = false;
             for (int i = 0; i < totalCities; i++) {
-                if (cities[i] != null && cities[i].equals(actualCity)) {
-                    counts[i]++;
+                if (cities.get(i).equals(actualCity)) {
+                    counts.set(i, counts.get(i) + 1);
                     found = true;
                     break;
                 }
@@ -156,40 +145,40 @@ public class GeographicalModule {
 
             // Si no se encuentra la ciudad, la agregamos a la lista
             if (!found) {
-                cities[totalCities] = actualCity;
-                counts[totalCities] = 1;
+                cities.add(actualCity);
+                counts.add(1);
                 totalCities++;
             }
 
             actual = actual.getNext();
         }
 
-        // Encontrar el mayor conteo
+        // Encontrar el mayor conteo de vehículos
         int maxVehicles = 0;
         for (int i = 0; i < totalCities; i++) {
-            if (counts[i] > maxVehicles) {
-                maxVehicles = counts[i];
+            if (counts.get(i) > maxVehicles) {
+                maxVehicles = counts.get(i);
             }
         }
 
-        // Contar cuántas cities tienen el máximo número de vehículos
+        // Contar cuántas ciudades tienen el máximo número de vehículos
         int maxNumCities = 0;
         for (int i = 0; i < totalCities; i++) {
-            if (counts[i] == maxVehicles) {
+            if (counts.get(i) == maxVehicles) {
                 maxNumCities++;
             }
         }
 
-        // Crear un arreglo con las cities que tienen el máximo número de vehículos
-        String[] mostCityVehicles = new String[maxNumCities];
-        int index = 0;
+        // Crear una lista enlazada con las ciudades que tienen el máximo número de
+        // vehículos
+        SimpleLinkedList<String> mostCityVehicles = new SimpleLinkedList<>();
         for (int i = 0; i < totalCities; i++) {
-            if (counts[i] == maxVehicles) {
-                mostCityVehicles[index] = cities[i];
-                index++;
+            if (counts.get(i) == maxVehicles) {
+                mostCityVehicles.add(cities.get(i));
             }
         }
 
         return mostCityVehicles;
     }
+
 }
