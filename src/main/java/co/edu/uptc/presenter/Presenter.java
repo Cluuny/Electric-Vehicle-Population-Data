@@ -28,7 +28,7 @@ public class Presenter implements ActionListener, ProyectInterface.Presenter {
         System.out.println("Descargando Datos...");
         globaLinkedList = app.init(globaLinkedList);
         System.out.println("Descargan Finalizada");
-        view.getInstancView(this);
+        view = new View(this);
         view.begin();
     }
 

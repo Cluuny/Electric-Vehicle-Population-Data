@@ -2,15 +2,15 @@ package co.edu.uptc.view;
 
 import co.edu.uptc.interfaces.ProyectInterface;
 import co.edu.uptc.model.structure.SimpleLinkedList;
-import co.edu.uptc.presenter.Main;
+import co.edu.uptc.presenter.Presenter;
 
 public final class View implements ProyectInterface.View {
     private StartFrame startPageFrame;
     private ShowInfoFrame geoFrame;
     private ShowInfoFrame vehicleFrame;
-    private Main presenter;
+    private Presenter presenter;
 
-    public View(Main presenter) {
+    public View(Presenter presenter) {
         this.presenter = presenter;
         startPageFrame = new StartFrame("Página de inicio");
         geoFrame = new ShowInfoFrame(new Header("Análisis Geográfico"), createGeoBody());
