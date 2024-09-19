@@ -5,18 +5,27 @@ import co.edu.uptc.model.structure.SimpleLinkedList;
 import co.edu.uptc.presenter.Presenter;
 
 public final class View implements ProyectInterface.View {
+    private static View inView;
     private StartFrame startPageFrame;
     private ShowInfoFrame geoFrame;
     private ShowInfoFrame vehicleFrame;
     private Presenter presenter;
 
-    public View(Presenter presenter) {
+    private View(Presenter presenter) {
         this.presenter = presenter;
         startPageFrame = new StartFrame("Página de inicio");
         geoFrame = new ShowInfoFrame(new Header("Análisis Geográfico"), createGeoBody());
         vehicleFrame = new ShowInfoFrame(new Header("Análisis Vehicular"), createVehicleBody());
         addActionListenerToButtons();
         begin();
+    }
+
+    public static View getInstanceOfView(Presenter pr){
+        if (inView == null){
+            inView = new View(pr);
+        }
+
+        return inView;
     }
 
 
