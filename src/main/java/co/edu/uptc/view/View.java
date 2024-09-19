@@ -14,8 +14,8 @@ public final class View implements ProyectInterface.View {
     private View(Presenter presenter) {
         this.presenter = presenter;
         startPageFrame = new StartFrame("Página de inicio");
-        geoFrame = new ShowInfoFrame(new Header("Análisis Geográfico"), createGeoBody());
-        vehicleFrame = new ShowInfoFrame(new Header("Análisis Vehicular"), createVehicleBody());
+        //geoFrame = new ShowInfoFrame(new Header("Análisis Geográfico"), );
+        //vehicleFrame = new ShowInfoFrame(new Header("Análisis Vehicular"), );
         addActionListenerToButtons();
         begin();
     }
@@ -26,51 +26,6 @@ public final class View implements ProyectInterface.View {
         }
 
         return inView;
-    }
-
-
-
-    public Body createGeoBody() {
-        OptionButton stateButton = new OptionButton("Listado por Estados", "state");
-        OptionButton countyButton = new OptionButton("Listado por Condado", "county");
-        OptionButton cityButton = new OptionButton("Listado por Ciudad", "city");
-
-        // Agregar un ActionListener para cada botón que apunte al presenter
-        stateButton.addActionListener(presenter);
-        countyButton.addActionListener(presenter);
-        cityButton.addActionListener(presenter);
-
-        String[][] a = new String[][]{{"Eatdo"},{"r"}};
-        String[][] b = new String[][]{{"conda"},{"r"}};
-        String i = "texas";
-        ButtonsPanel geoButtonsPanel = new ButtonsPanel(stateButton, countyButton, cityButton);
-        Body geoBody = new Body(geoButtonsPanel, a, b , i);
-
-        return geoBody;
-    }
-
-    public Body createVehicleBody() {
-        OptionButton stateButton = new OptionButton("Listado por Modelo", "model");
-        OptionButton amountButton = new OptionButton("Listado por Fabricante", "amount");
-        OptionButton rangeButton = new OptionButton("Listado por ER", "range");
-
-        // Agregar un ActionListener para cada botón que apunte al presenter
-        stateButton.addActionListener(presenter);
-        amountButton.addActionListener(presenter);
-        rangeButton.addActionListener(presenter);
-
-        ButtonsPanel vehicleButtonsPanel = new ButtonsPanel(stateButton, amountButton, rangeButton);
-
-        String[][] a = new String[][]{{"Eatdo"},{"r"}};
-        String[][] b = new String[][]{{"conda"},{"r"}};
-        String i = "texas";
-        Body vehicleBody = new Body(vehicleButtonsPanel, a, b, i);
-
-        return vehicleBody;
-    }
-
-    public StartFrame getStartPageFrame() {
-        return startPageFrame;
     }
 
     @Override
