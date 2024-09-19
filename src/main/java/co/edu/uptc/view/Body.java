@@ -16,11 +16,11 @@ public class Body extends JPanel {
     private ButtonsPanel buttonsPanel;
     private ContainerPanel containerPanel;
 
-    public Body(ButtonsPanel buttonsPanel) {
+    public Body(ButtonsPanel buttonsPanel, String[][] stateData, String[][] countyData, String city ) {
 
         super(new FlowLayout());
         this.buttonsPanel = buttonsPanel;
-        containerPanel = new ContainerPanel();
+        containerPanel = new ContainerPanel(stateData, countyData, city);
 
         add(buttonsPanel);
         add(containerPanel);

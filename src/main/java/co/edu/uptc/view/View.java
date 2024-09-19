@@ -19,6 +19,8 @@ public final class View implements ProyectInterface.View {
         begin();
     }
 
+
+
     public Body createGeoBody() {
         OptionButton stateButton = new OptionButton("Listado por Estados", "state");
         OptionButton countyButton = new OptionButton("Listado por Condado", "county");
@@ -29,8 +31,11 @@ public final class View implements ProyectInterface.View {
         countyButton.addActionListener(presenter);
         cityButton.addActionListener(presenter);
 
+        String[][] a = new String[][]{{"Eatdo"},{"r"}};
+        String[][] b = new String[][]{{"conda"},{"r"}};
+        String i = "texas";
         ButtonsPanel geoButtonsPanel = new ButtonsPanel(stateButton, countyButton, cityButton);
-        Body geoBody = new Body(geoButtonsPanel);
+        Body geoBody = new Body(geoButtonsPanel, a, b , i);
 
         return geoBody;
     }
@@ -46,7 +51,11 @@ public final class View implements ProyectInterface.View {
         rangeButton.addActionListener(presenter);
 
         ButtonsPanel vehicleButtonsPanel = new ButtonsPanel(stateButton, amountButton, rangeButton);
-        Body vehicleBody = new Body(vehicleButtonsPanel);
+
+        String[][] a = new String[][]{{"Eatdo"},{"r"}};
+        String[][] b = new String[][]{{"conda"},{"r"}};
+        String i = "texas";
+        Body vehicleBody = new Body(vehicleButtonsPanel, a, b, i);
 
         return vehicleBody;
     }
