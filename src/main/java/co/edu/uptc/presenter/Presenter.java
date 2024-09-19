@@ -46,37 +46,6 @@ public class Presenter implements ActionListener, ProyectInterface.Presenter {
             case "back":
                 view.showStartFrame();
                 break;
-
-            case "state":
-                SimpleLinkedList<StateCount> stateCounts = app.listByState(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Estados", stateCounts.clone());
-                break;
-
-            case "county":
-                SimpleLinkedList<CountyCount> countyCounts = app.countByCounty(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Condado", countyCounts.clone());
-                break;
-
-            case "city":
-                SimpleLinkedList<String> citiesWithMostVechicles = app.listCitiesWithMostVehicles(globaLinkedList);
-                view.showStringDisplayFrame("Cuidad con mas registros", citiesWithMostVechicles.clone());
-                break;
-
-            case "model":
-                SimpleLinkedList<VehicleModelCount> vehicleModelCounts = app.countCarsByModel(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Modelo", vehicleModelCounts.clone());
-                break;
-
-            case "amount":
-                SimpleLinkedList<VehicleMakerCount> vehicleMakerCounts = app.countCarsByMaker(globaLinkedList);
-                view.showStringDisplayFrame("Listado por Fabricante", vehicleMakerCounts.clone());
-                break;
-
-            case "range":
-                SimpleLinkedList<ElectricRangeCount> electricRangeCounts = app
-                        .countCarsByElectricRange(globaLinkedList);
-                view.showStringDisplayFrame("Listado por ER", electricRangeCounts.clone());
-                break;
         }
     }
 
@@ -89,4 +58,46 @@ public class Presenter implements ActionListener, ProyectInterface.Presenter {
     public void setModel(ProyectInterface.Model model) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public SimpleLinkedList<StateCount> getStateData(){
+        SimpleLinkedList<StateCount> stateCounts = app.listByState(globaLinkedList);
+        return stateCounts.clone();
+
+    }
+
+    public SimpleLinkedList<CountyCount> getCountyData(){
+        SimpleLinkedList<CountyCount> countyCounts = app.countByCounty(globaLinkedList);
+        return countyCounts.clone();
+
+    }
+
+    public SimpleLinkedList<String> getCityData(){
+        SimpleLinkedList<String> citiesWithMostVechicles = app.listCitiesWithMostVehicles(globaLinkedList);
+        return citiesWithMostVechicles.clone();
+        
+
+    }
+
+    public SimpleLinkedList<VehicleModelCount> getModelData(){
+        SimpleLinkedList<VehicleModelCount> vehicleModelCounts = app.countCarsByModel(globaLinkedList);
+        return vehicleModelCounts.clone();
+
+    }
+
+    public SimpleLinkedList<VehicleMakerCount> getMakerData(){
+        SimpleLinkedList<VehicleMakerCount> vehicleMakerCounts = app.countCarsByMaker(globaLinkedList);
+        return vehicleMakerCounts.clone();
+
+    }
+
+    public SimpleLinkedList<ElectricRangeCount> getRangeData(){
+        SimpleLinkedList<ElectricRangeCount> electricRangeCounts = app
+            .countCarsByElectricRange(globaLinkedList);
+        return electricRangeCounts.clone();
+
+    }
+
+
+
+
 }

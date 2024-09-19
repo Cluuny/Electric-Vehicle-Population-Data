@@ -32,6 +32,7 @@ public class Body extends JPanel {
     public Body(String[][] data1, String[][] data2, String[][] data3, int type) {
 
         super(new FlowLayout());
+        cardLayout = new CardLayout();
 
         //variable type que indica el tipo de body
         if(type == 0){
@@ -53,6 +54,7 @@ public class Body extends JPanel {
     private JPanel setUpContainerPanelGeo(String[][] data1, String[][] data2, String[][] data3){
         containerPanel = new JPanel();
         containerPanel.setLayout(cardLayout);
+        containerPanel.setBackground(Color.white);
         containerPanel.setPreferredSize(new Dimension(740, 368));
         containerPanel.setOpaque(false);
         containerPanel.add(setUpStateInfoPanel(data1), "card1");
@@ -66,6 +68,7 @@ public class Body extends JPanel {
     private JPanel setUpContainerPanelVehicle(String[][] data1, String[][] data2, String[][] data3){
         containerPanel = new JPanel();
         containerPanel.setLayout(cardLayout);
+        containerPanel.setBackground(Color.white);
         containerPanel.setPreferredSize(new Dimension(740, 368));
         containerPanel.setOpaque(false);
         containerPanel.add(setUpModelPanel(data1), "card1");
@@ -124,7 +127,7 @@ public class Body extends JPanel {
     private JPanel setUpStateInfoPanel(String[][] stateData){
         InfoPanel stateInfoPanel = new InfoPanel();
 
-        String[] columnNames = new String[]{"Estado, Cant. Vehiculos"};
+        String[] columnNames = new String[]{"Estado"," Cant. Vehiculos"};
 
         JTable table = new JTable(stateData, columnNames);
 
@@ -142,7 +145,7 @@ public class Body extends JPanel {
     private JPanel setUpCountyInfoPanel(String[][] countyData){
         InfoPanel countyInfoPanel = new InfoPanel();
 
-        String[] columnNames = new String[]{"Condado, Cant. Vehiculos"};
+        String[] columnNames = new String[]{"Condado"," Cant. Vehiculos"};
 
         JTable table = new JTable(countyData, columnNames);
 
@@ -164,6 +167,12 @@ public class Body extends JPanel {
         JLabel mostRegisteredCity = new JLabel("Ciudad con mas registros: ");
 
         JTextField city = new JTextField(cityData[0][0]);
+
+        cityInfoPanel.setLayout(new FlowLayout());
+        cityInfoPanel.add(mostRegisteredCity);
+        cityInfoPanel.add(city);
+
+
 
         city.setEditable(false);
 
@@ -219,7 +228,7 @@ public class Body extends JPanel {
     private JPanel setUpModelPanel(String[][] modelData){
         InfoPanel modelInfoPanel = new InfoPanel();
 
-        String[] columnNames = new String[]{"Modelo, Cant. Vehiculos"};
+        String[] columnNames = new String[]{"Modelo","Cant. Vehiculos" };
 
         JTable table = new JTable(modelData, columnNames);
 
@@ -236,7 +245,7 @@ public class Body extends JPanel {
     private JPanel setUpMakerPanel(String[][] makerData){
         InfoPanel makerInfoPanel = new InfoPanel();
 
-        String[] columnNames = new String[]{"Fabricante, Cant. Vehiculos"};
+        String[] columnNames = new String[]{"Fabricante "," Cant. Vehiculos"};
 
         JTable table = new JTable(makerData, columnNames);
 
@@ -253,7 +262,7 @@ public class Body extends JPanel {
     private JPanel setUpRangePanel(String[][] rangeData){
         InfoPanel rangeInfoPanel = new InfoPanel();
 
-        String[] columnNames = new String[]{"Rango electrico, Cant. Vehiculos"};
+        String[] columnNames = new String[]{"Rango electrico"," Cant. Vehiculos"};
 
         JTable table = new JTable(rangeData, columnNames);
 
@@ -274,7 +283,7 @@ public class Body extends JPanel {
             Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             // Cambiar el color de fondo de las filas pares
-            component.setBackground(row % 2 == 0 ? new Color(0x6abce2) : Color.WHITE);
+            component.setBackground(row % 2 == 0 ? new Color(173, 216, 230) : Color.WHITE);
             if (isSelected) {
                 component.setForeground(Color.WHITE);
                 component.setBackground(Color.lightGray);

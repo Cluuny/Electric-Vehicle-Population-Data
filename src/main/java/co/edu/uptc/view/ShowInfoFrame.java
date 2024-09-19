@@ -37,13 +37,4 @@ public class ShowInfoFrame extends JFrame {
 
     }
 
-    public OptionButton[] getOptionButtons() {
-        OptionButton[] buttons = new OptionButton[3];
-
-        buttons[0] = bodyPanel.getButtonsPanel().getFirstButton();
-        buttons[1] = bodyPanel.getButtonsPanel().getSecondButton();
-        buttons[2] = bodyPanel.getButtonsPanel().getThirdButton();
-
-        return buttons;
-    }
 }
